@@ -1,0 +1,16 @@
+!.gitkeep
+node_modules/
+bower_components/
+.idea/
+npm-debug.log
+dist/
+temp/
+test_out/
+docs/
+dev/
+build/
+.ionic.project.swp
+platforms/
+resources/
+plugins/
+playground/

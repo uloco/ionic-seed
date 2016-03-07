@@ -1,0 +1,23 @@
+{
+  "preset": "default",
+  "plugins": [
+    "esformatter-quotes",
+    "esformatter-remove-trailing-commas",
+    "esformatter-flow",
+    "esformatter-limit-linebreaks",
+    "esformatter-var-each",
+    "esformatter-dot-notation",
+    "esformatter-braces",
+    "esformatter-semicolons",
+    "esformatter-spaced-lined-comment"
+  ],
+  "whiteSpace": {
+    "after": {
+      "FunctionReservedWord": 1
+    }
+  },
+  "quotes": {
+    "type": "single",
+    "avoidEscape": false
+  }
+}

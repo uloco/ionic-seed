@@ -1,0 +1,20 @@
+{
+  "name": "ionic-seed",
+  "app_id": "",
+  "gulpStartupTasks": [
+    "sass",
+    "watch"
+  ],
+  "defaultBrowser": "google-chrome",
+  "watchPatterns": [
+    "www/**/*",
+    "!www/bower_components/**/*"
+  ],
+  "browsers": [
+    {
+      "platform": "android",
+      "browser": "crosswalk",
+      "version": "12.41.296.5"
+    }
+  ]
+}
