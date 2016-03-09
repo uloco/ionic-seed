@@ -7,6 +7,6 @@
 
   function AppController() {
     var vm = this;
-    vm.value = "";
+    vm.value = '';
   }
 })();
