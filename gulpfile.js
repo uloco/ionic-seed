@@ -1,15 +1,15 @@
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 var bower = require('bower');
-var concat = require('gulp-concat');
 var sass = require('gulp-sass');
-var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
 var babel = require('gulp-babel');
+var esformatter = require('gulp-esformatter');
 
 var paths = {
-  sass: ['./scss/**/*.scss']
+  sass: ['./scss/**/*.scss'],
+  js: ['www/**/*.js', '!www/bower_components/**/*']
 };
 
 gulp.task('default', ['sass']);
@@ -33,6 +33,12 @@ gulp.task('babel', function (done) {
 
 gulp.task('watch', function () {
   gulp.watch(paths.sass, ['sass']);
+});
+
+gulp.task('format', function () {
+  return gulp.src(paths.js)
+    .pipe(esformatter())
+    .pipe(gulp.dest('www/'));
 });
 
 gulp.task('install', ['git-check'], function () {

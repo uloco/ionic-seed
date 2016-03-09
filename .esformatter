@@ -9,7 +9,7 @@
     "esformatter-dot-notation",
     "esformatter-braces",
     "esformatter-semicolons",
-    "esformatter-spaced-lined-comment"
+    "esformatter-quote-props"
   ],
   "whiteSpace": {
     "after": {

@@ -1,0 +1,15 @@
+node_modules/
+www/bower_components/
+build/
+dist/
+temp/
+test_out/
+docs/
+dev/
+plugins/
+platforms/
+hooks/
+resources/
+jsdoc-custom/
+gulpfile.js
+Gruntfile.js

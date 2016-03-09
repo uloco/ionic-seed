@@ -10,6 +10,10 @@
     "es6": true,
     "jasmine": true
   },
+  "globals": {
+    "module": true,
+    "inject": true
+  },
   "parserOptions": {
     "sourceType": "module"
   },
@@ -36,7 +40,12 @@
         "anonymous": "always",
         "named": "never"
       }
-    ]
+    ],
+    "no-warning-comments": 0,
+    "spaced-comment": 0,
+    "padded-blocks": 0,
+    "block-scoped-var": 0,
+    "quote-props": [2, "as-needed"]
     // disabled because of https://github.com/eslint/eslint/issues/5234
     //    "quotes": [
     //      2,
