@@ -6,13 +6,97 @@ var rename = require('gulp-rename');
 var sh = require('shelljs');
 var babel = require('gulp-babel');
 var esformatter = require('gulp-esformatter');
+var eslint = require('gulp-eslint');
+var plumber = require('gulp-plumber');
+var changed = require('gulp-changed');
+var flow = require('gulp-flowtype');
+var sourcemaps = require('gulp-sourcemaps');
+var changedInPlace = require('gulp-changed-in-place');
 
 var paths = {
   sass: ['./scss/**/*.scss'],
-  js: ['www/**/*.js', '!www/bower_components/**/*']
+  jsfiles: ['app/**/*.js']
 };
 
-gulp.task('default', ['sass']);
+
+/*                                                      */
+/* ==================== WATCH TASK ==================== */
+/*                                                      */
+
+gulp.task('w-convert', function () {
+  var watcher = gulp.watch(paths.jsfiles, ['babelEs6']);
+
+
+  watcher.on('change', function (event) {
+    gutil.log(' ' + event.type.toUpperCase(), ' ➽', gutil.colors.cyan(event.path));
+  });
+});
+
+/*                                                       */
+/* ==================== ESFORMATTER ==================== */
+/*                                                       */
+
+gulp.task('w-esformatter', function () {
+  gulp.watch(paths.jsfiles, ['esformatter']);
+});
+
+gulp.task('esformatter', function () {
+  return gulp.src(paths.jsfiles)
+    .pipe(changedInPlace())
+    .pipe(plumber())
+    .pipe(esformatter())
+    .pipe(gulp.dest('app'));
+});
+
+/*                                                 */
+/* ==================== Babel ==================== */
+/*                                                 */
+
+gulp.task('w-babel', function () {
+  gulp.watch(paths.jsfiles, ['babelEs6']);
+});
+
+gulp.task('babelEs6', function () {
+  return gulp.src(paths.jsfiles)
+    .pipe(changed('./www'))
+    .pipe(plumber())
+    .pipe(sourcemaps.init())
+    .pipe(babel({
+      presets: ['es2015']
+    }))
+    .pipe(sourcemaps.write('.', {sourceRoot: './www'}))
+    .pipe(gulp.dest('./www'));
+});
+
+/*                                                  */
+/*==================== Flowtype ====================*/
+/*                                                  */
+
+gulp.task('typecheck', function () {
+  return gulp.src(paths.jsfiles)
+    .pipe(plumber())
+    .pipe(flow({all: true}));
+});
+
+/*                                                */
+/*==================== ESLint ====================*/
+/*                                                */
+
+gulp.task('w-eslint', function () {
+  gulp.watch(['www/*.js', 'www/view/*.js'], ['lint']);
+});
+
+gulp.task('lint', function () {
+  return gulp.src(['www/*.js', 'www/view/*.js'], {base: './'})
+    .pipe(eslint({
+      config: '.eslintrc'
+    }))
+    .pipe(eslint.format());
+});
+
+/*                                              */
+/*==================== SASS ====================*/
+/*                                              */
 
 gulp.task('sass', function (done) {
   gulp.src('./scss/ionic.app.scss')
@@ -24,22 +108,13 @@ gulp.task('sass', function (done) {
     .on('end', done);
 });
 
-gulp.task('babel', function (done) {
-  gulp.src('./js/*.js')
-    .pipe(babel())
-    .pipe(gulp.dest('./www/js/'))
-    .on('end', done);
-});
-
 gulp.task('watch', function () {
   gulp.watch(paths.sass, ['sass']);
 });
 
-gulp.task('format', function () {
-  return gulp.src(paths.js)
-    .pipe(esformatter())
-    .pipe(gulp.dest('www/'));
-});
+/*                                                 */
+/*==================== INSTALL ====================*/
+/*                                                 */
 
 gulp.task('install', ['git-check'], function () {
   return bower.commands.install()
@@ -47,6 +122,10 @@ gulp.task('install', ['git-check'], function () {
       gutil.log('bower', gutil.colors.cyan(data.id), data.message);
     });
 });
+
+/*                                               */
+/* ==================== GIT ==================== */
+/*                                               */
 
 gulp.task('git-check', function (done) {
   if (!sh.which('git')) {
