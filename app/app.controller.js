@@ -18,6 +18,9 @@
     let x = 6;
     let y = 4;
 
+    let f = 6;
+    let g = 4;
+
     var a = [
       'Hydrogen',
       'Helium',

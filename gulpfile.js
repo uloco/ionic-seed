@@ -15,9 +15,12 @@ var changedInPlace = require('gulp-changed-in-place');
 
 var paths = {
   sass: ['./scss/**/*.scss'],
-  jsfiles: ['app/**/*.js']
+  jsfiles: ['app/**/*.js'],
+  noJs: [
+    'app/**/*',
+    '!app/**/*.js'
+  ]
 };
-
 
 /*                                                      */
 /* ==================== WATCH TASK ==================== */
@@ -25,12 +28,23 @@ var paths = {
 
 gulp.task('w-convert', function () {
   gulp.run('babelEs6');
+
+  gulp.watch(paths.noJs,['copy-files']);
+
   var watcher = gulp.watch(paths.jsfiles, ['babelEs6']);
-
-
   watcher.on('change', function (event) {
     gutil.log(' ' + event.type.toUpperCase(), ' ➽', gutil.colors.cyan(event.path));
   });
+});
+
+/*                                                     */
+/* ==================== COPY TASK ==================== */
+/*                                                     */
+
+gulp.task('copy-files', function () {
+  return gulp.src(paths.noJs)
+    .pipe(changedInPlace())
+    .pipe(gulp.dest('www'))
 });
 
 /*                                                       */
@@ -65,7 +79,7 @@ gulp.task('babelEs6', function () {
     .pipe(babel({
       presets: ['es2015']
     }))
-    .pipe(sourcemaps.write('.', {sourceRoot: './www'}))
+    .pipe(sourcemaps.write('.', {sourceRoot: './app'}))
     .pipe(gulp.dest('./www'));
 });
 
