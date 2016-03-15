@@ -28,7 +28,7 @@ var paths = {
 
 gulp.task('w-convert', function () {
   gulp.run('babelEs6');
-
+  gulp.run('copy-files');
   gulp.watch(paths.noJs,['copy-files']);
 
   var watcher = gulp.watch(paths.jsfiles, ['babelEs6']);
@@ -43,7 +43,7 @@ gulp.task('w-convert', function () {
 
 gulp.task('copy-files', function () {
   return gulp.src(paths.noJs)
-    .pipe(changedInPlace())
+    .pipe(changed('www'))
     .pipe(gulp.dest('www'))
 });
 
