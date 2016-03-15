@@ -24,6 +24,7 @@ var paths = {
 /*                                                      */
 
 gulp.task('w-convert', function () {
+  gulp.run('babelEs6');
   var watcher = gulp.watch(paths.jsfiles, ['babelEs6']);
 
 
