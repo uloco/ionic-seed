@@ -1,0 +1,64 @@
+/* Global CSS definitions */
+
+@font-face {
+  font-family: 'Roboto-Regular';
+  src: url('components/assets/styles/fonts/Roboto2014/roboto-regular-webfont.eot');
+  src: url('components/assets/styles/fonts/Roboto2014/roboto-regular-webfont.eot?#iefix') format('embedded-opentype'),
+  url('components/assets/styles/fonts/Roboto2014/roboto-regular-webfont.woff2') format('woff2'),
+  url('components/assets/styles/fonts/Roboto2014/roboto-regular-webfont.woff') format('woff'),
+  url('components/assets/styles/fonts/Roboto2014/roboto-regular-webfont.ttf') format('truetype'),
+  url('components/assets/styles/fonts/Roboto2014/roboto-regular-webfont.svg#svgFontName') format('svg');
+}
+
+.vertical-text {
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+
+.fit-container {
+  max-width: 100%;
+}
+
+.dummy {
+  color: #fff;
+  text-align: center;
+  background-color: teal;
+}
+
+.top10 {
+  margin-top: 1rem;
+}
+
+.top05 {
+  margin-top: 0.5rem;
+}
+
+.block {
+  display: block;
+}
+
+/*.col-xs-1,
+.col-xs-2,
+.col-xs-3,
+.col-xs-4,
+.col-xs-5,
+.col-xs-6,
+.col-xs-7,
+.col-xs-8,
+.col-xs-9,
+.col-xs-10,
+.col-xs-11,
+.col-xs-12 {
+    border: solid 1px #f00;
+}*/
+
+.col {
+  /*border: solid 1px firebrick;*/
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
