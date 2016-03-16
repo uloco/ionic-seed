@@ -2,6 +2,7 @@
   "name": "ionic-seed",
   "app_id": "",
   "gulpStartupTasks": [
+    "w-convert",
     "sass",
     "watch"
   ],

@@ -14,4 +14,5 @@ platforms/
 resources/
 plugins/
 playground/
-www/
+www/**/*-compiled.js
+www/**/*-compiled.js.map

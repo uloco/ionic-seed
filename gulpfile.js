@@ -28,8 +28,9 @@ var paths = {
 
 gulp.task('w-convert', function () {
   gulp.run('babelEs6');
+  //gulp.run('copy-files');
 
-  gulp.watch(paths.noJs,['copy-files']);
+  //gulp.watch(paths.noJs,['copy-files']);
 
   var watcher = gulp.watch(paths.jsfiles, ['babelEs6']);
   watcher.on('change', function (event) {
@@ -73,13 +74,14 @@ gulp.task('w-babel', function () {
 
 gulp.task('babelEs6', function () {
   return gulp.src(paths.jsfiles)
-    .pipe(changed('./www'))
-    .pipe(plumber())
+    //.pipe(changed('./www'))
+    //.pipe(plumber())
+    .pipe(rename({ suffix: '-compiled', extname:'.js'}))
     .pipe(sourcemaps.init())
     .pipe(babel({
       presets: ['es2015']
     }))
-    .pipe(sourcemaps.write('.', {sourceRoot: './app'}))
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('./www'));
 });
 
