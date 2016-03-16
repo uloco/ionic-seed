@@ -219,6 +219,15 @@ module.exports = function (grunt) {
         pushTo: 'upstream',
         gitDescribeOptions: '--tags --always --abbrev=1 --dirty=-d'
       }
+    },
+    babel: {
+      options: {
+        sourceMaps: true,
+        presets: ['es2015']
+      },
+      files: {
+        src: '<%= jsFiles %>'
+      }
     }
   });
 

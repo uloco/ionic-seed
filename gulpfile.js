@@ -12,15 +12,20 @@ var changed = require('gulp-changed');
 var flow = require('gulp-flowtype');
 var sourcemaps = require('gulp-sourcemaps');
 var changedInPlace = require('gulp-changed-in-place');
+var del = require('del');
 
 var paths = {
   sass: ['./scss/**/*.scss'],
-  jsfiles: ['app/**/*.js'],
+  jsfiles: ['www/**/*.js', '!www/bower_components/**/*.js'],
   noJs: [
-    'app/**/*',
-    '!app/**/*.js'
+    'www/**/*',
+    '!www/**/*.js'
   ]
 };
+
+gulp.task('clean-es6', function () {
+  return del(['www/**/*-compiled.js{,.map}']);
+});
 
 /*                                                      */
 /* ==================== WATCH TASK ==================== */
@@ -76,13 +81,13 @@ gulp.task('babelEs6', function () {
   return gulp.src(paths.jsfiles)
     //.pipe(changed('./www'))
     //.pipe(plumber())
-    .pipe(rename({ suffix: '-compiled', extname:'.js'}))
     .pipe(sourcemaps.init())
     .pipe(babel({
       presets: ['es2015']
     }))
+    .pipe(rename({suffix: '-compiled', extname: '.js'}))
     .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest('./www'));
+    .pipe(gulp.dest('./wwwGulp'));
 });
 
 /*                                                  */
