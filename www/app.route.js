@@ -10,7 +10,8 @@
       .state('index', {
         url: '/',
         templateUrl: 'view/view.html',
-        controller: 'ViewController'
+        controller: 'ViewController',
+        controllerAs: 'view'
       });
 
     $urlRouterProvider.otherwise('/');
