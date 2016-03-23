@@ -20,3 +20,4 @@ import './view/view.module.js';
 import './view/view.controller.js';
 
 require("html!./index.html");
+
