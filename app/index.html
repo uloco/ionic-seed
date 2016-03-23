@@ -6,11 +6,46 @@
         content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
   <meta name="format-detection" content="telephone=no">
   <title></title>
+
+  <!-- stylesheets third party-->
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="components/assets/styles/app.ionic.css"/>
+
+  <!-- build:css app.full.min.css -->
+  <link rel="stylesheet" href="app.css">
+  <!-- /build -->
+
 </head>
 <body ng-controller="AppController">
 <ion-nav-bar class="bar-dark" ng-cloak>
+  <ion-nav-title>Ionic Seed</ion-nav-title>
 </ion-nav-bar>
 <ion-nav-view></ion-nav-view>
-<script src="main.js"></script>
+
+<!-- framework / libraries -->
+<!-- build:js bower_components/ionic/release/js/ionic.bundle.min.js -->
+<script src="bower_components/ionic/release/js/ionic.bundle.js"></script>
+<!-- /build -->
+
+<!-- build: js bower_components/ngCordova/dist/ng-cordova.min.js -->
+<script src="bower_components/ngCordova/dist/ng-cordova.js"></script>
+<!-- /build -->
+
+<script src="cordova.js"></script>
+
+<!-- Include View Modules -->
+<!--------------------------------------------------------------------------------------------------------------------->
+<!-- build:js app.full.min.js -->
+<script src="app.js"></script>
+<script src="app.route.js"></script>
+<script src="app.controller.js"></script>
+<script src="view/view.module.js"></script>
+<script src="view/view.controller.js"></script>
+
+<!-- Include Components Modules-->
+<!--------------------------------------------------------------------------------------------------------------------->
+
+<!-- /build -->
+<!--------------------------------------------------------------------------------------------------------------------->
 </body>
 </html>

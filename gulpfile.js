@@ -12,7 +12,6 @@ var changed = require('gulp-changed');
 var flow = require('gulp-flowtype');
 var sourcemaps = require('gulp-sourcemaps');
 var changedInPlace = require('gulp-changed-in-place');
-var ngAnnotate = require('gulp-ng-annotate');
 
 var paths = {
   sass: ['./scss/**/*.scss'],
@@ -29,7 +28,7 @@ var paths = {
 
 gulp.task('w-convert', function () {
   gulp.run('babelEs6');
-  gulp.run('copy-files');
+
   gulp.watch(paths.noJs,['copy-files']);
 
   var watcher = gulp.watch(paths.jsfiles, ['babelEs6']);
@@ -44,13 +43,7 @@ gulp.task('w-convert', function () {
 
 gulp.task('copy-files', function () {
   return gulp.src(paths.noJs)
-    .pipe(changed('www'))
-    .pipe(gulp.dest('www'))
-});
-
-gulp.task('copy-js-files', function () {
-  return gulp.src(paths.jsfiles)
-    .pipe(changed('www'))
+    .pipe(changedInPlace())
     .pipe(gulp.dest('www'))
 });
 
