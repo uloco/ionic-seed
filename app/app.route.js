@@ -1,7 +1,6 @@
 (function () {
   'use strict';
 
-  routesConfig.$inject = ["$stateProvider", "$urlRouterProvider"];
   angular
     .module('ionic-seed')
     .config(routesConfig);
@@ -17,4 +16,3 @@
     $urlRouterProvider.otherwise('/');
   }
 })();
-
