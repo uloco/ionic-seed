@@ -6,6 +6,6 @@
     .controller('ViewController', ViewController);
 
   function ViewController() {
-    console.log('hi');
+    console.log('hi2');
   }
 }());
