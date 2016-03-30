@@ -1,5 +1,5 @@
-var webpack = require('webpack'),
-  path = require('path');
+var webpack = require('webpack')
+var path = require('path');
 var AngularInjectorPlugin = require('webpack-angular-injector-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -12,17 +12,14 @@ module.exports = {
     filename: 'main.js'
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({
-      template: './www/index.html'
-    })
+    new webpack.HotModuleReplacementPlugin()
   ],
   module: {
     loaders: [
       {
         test: /\.html$/,
         exclude: /(node_modules|bower_components)/,
-        loaders: ['raw-loader']
+        loader: 'ngtemplate?relativeTo=/www/!html'
       },
       {
         test: /\.js$/,
@@ -48,13 +45,6 @@ module.exports = {
         loader: "style!css!less"
       }
     ]
-  }
-
-  // devtool: 'source-map'
-  //,
-  //plugins: [
-  //  new AngularInjectorPlugin({
-  //    exclude: /fixture/
-  //  })
-  //]
+  },
+  devtool: 'source-map'
 };
