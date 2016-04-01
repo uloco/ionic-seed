@@ -1,4 +1,4 @@
-var webpack = require('webpack')
+var webpack = require('webpack');
 var path = require('path');
 var AngularInjectorPlugin = require('webpack-angular-injector-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
