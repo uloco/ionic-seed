@@ -12,7 +12,6 @@ var changed = require('gulp-changed');
 var flow = require('gulp-flowtype');
 var sourcemaps = require('gulp-sourcemaps');
 var changedInPlace = require('gulp-changed-in-place');
-var ngAnnotate = require('gulp-ng-annotate');
 
 var paths = {
   sass: ['./scss/**/*.scss'],
