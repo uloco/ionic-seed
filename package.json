@@ -9,7 +9,10 @@
     "test": "karma start karma.conf.js",
     "test-single-run": "karma start karma.conf.js --single-run --reporters junit ",
     "initialize": "./initialize.sh",
-    "postversion": "grunt bump --setversion=${npm_package_version}"
+    "postversion": "grunt bump --setversion=${npm_package_version}",
+    "prebundle": "gulp copy-files && gulp copy-js-files",
+    "bundle": "webpack",
+    "serve": "webpack-dev-server"
   },
   "bugs": "https://github.com/uloco/ionic-seed/issues",
   "cordovaPlugins": [
@@ -74,9 +77,11 @@
     "gulp-uglify": "^1.5.3",
     "gulp-util": "^3.0.7",
     "html-loader": "^0.4.3",
+    "html-webpack-plugin": "^2.14.0",
     "less": "^2.6.1",
     "less-loader": "^2.2.2",
     "ng-annotate-loader": "^0.1.0",
+    "ng-cache-loader": "0.0.15",
     "ngtemplate-loader": "^1.3.1",
     "raw-loader": "^0.5.1",
     "style-loader": "^0.13.0",

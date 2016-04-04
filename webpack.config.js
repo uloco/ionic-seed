@@ -1,19 +1,26 @@
-var webpack = require('webpack'),
-  path = require('path');
+var webpack = require('webpack');
+var path = require('path');
 var AngularInjectorPlugin = require('webpack-angular-injector-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   debug: true,
-  entry: {
-    main: './www/index.js'
-  },
+  entry: ['webpack/hot/dev-server', './www/index.js']
+  ,
   output: {
     path: path.join(__dirname, 'www'),
-    filename: '[name].js'
+    filename: 'main.js'
   },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ],
   module: {
     loaders: [
-      // {test: /\.html$/, loader: 'raw'},
+      {
+        test: /\.html$/,
+        exclude: /(node_modules|bower_components)/,
+        loader: 'ngtemplate?relativeTo=/www/!html'
+      },
       {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
@@ -28,23 +35,16 @@ module.exports = {
         }
       },
       {
-      test: /\.css$/,
-      loader: "style-loader!css-loader"
-    },
-      { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&minetype=application/font-woff" },
-      { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" },
+        test: /\.css$/,
+        loader: "style-loader!css-loader"
+      },
+      {test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&minetype=application/font-woff"},
+      {test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader"},
       {
         test: /\.less$/,
         loader: "style!css!less"
       }
     ]
-  }
-  ,
-  devtool : 'source-map'
-  //,
-  //plugins: [
-  //  new AngularInjectorPlugin({
-  //    exclude: /fixture/
-  //  })
-  //]
+  },
+  devtool: 'source-map'
 };
