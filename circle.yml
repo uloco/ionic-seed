@@ -2,16 +2,21 @@ machine:
   node:
     version: 4.2.6
 
-  dependencies:
-    pre:
-      - npm install -g cordova ionic
-      - npm install -g ios-sim
-      - npm install -g ios-deploy
-    post:
-      - bower install
-      - ionic state restore
-      - mkdir resources/
-      - cp icon.png resources/
-      - gulp copy-files babelEs6
-      - ionic resources
-      - ionic build ios
+  environment:
+  # fake xcode project
+    XODE_SCHEME: " "
+    XODE_PROJECT: " "
+
+dependencies:
+  pre:
+    - npm install -g cordova ionic
+    - npm install -g ios-sim
+    - npm install -g ios-deploy
+  post:
+    - bower install
+    - ionic state restore
+    - mkdir resources/
+    - cp icon.png resources/
+    - gulp copy-files babelEs6
+    - ionic resources
+    - ionic build ios
