@@ -11,6 +11,7 @@ ionic state restore
 
 # Generate icons and splash
 mkdir resources
-cp -t resources/ phonegap/icon.png phonegap/splash.png
+cp icon.png resources/
+#cp splash.png resources/
 ionic resources
 
