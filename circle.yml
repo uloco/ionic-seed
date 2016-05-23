@@ -1,7 +1,4 @@
 machine:
-  node:
-    version: 4.2.6
-
   environment:
   # fake xcode project
     XODE_SCHEME: " "
