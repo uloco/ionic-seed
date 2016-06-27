@@ -1,17 +1,19 @@
 #!/usr/bin/env bash
 
 # Install dev dependencies
-npm install
+#npm install
 
 # Install libs
-bower install
+#bower install
 
 # Restore ionic platforms + plugins
+gulp copy-files babelEs6
+
 ionic state restore
 
 # Generate icons and splash
-mkdir resources
-cp icon.png resources/
+mkdir -pv resources
+cp icon.png splash.png resources/
 #cp splash.png resources/
 ionic resources
 

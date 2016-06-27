@@ -5,20 +5,19 @@ var sass = require('gulp-sass');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
 var babel = require('gulp-babel');
-var esformatter = require('gulp-esformatter');
 var eslint = require('gulp-eslint');
 var plumber = require('gulp-plumber');
 var changed = require('gulp-changed');
 var flow = require('gulp-flowtype');
 var sourcemaps = require('gulp-sourcemaps');
-var changedInPlace = require('gulp-changed-in-place');
 
 var paths = {
   sass: ['./scss/**/*.scss'],
   jsfiles: ['app/**/*.js'],
   noJs: [
     'app/**/*',
-    '!app/**/*.js'
+    '!app/**/*.js',
+    'package.json'
   ]
 };
 
@@ -28,6 +27,7 @@ var paths = {
 
 gulp.task('w-convert', function () {
   gulp.run('babelEs6');
+  gulp.run('copy-files');
 
   gulp.watch(paths.noJs,['copy-files']);
 
@@ -43,25 +43,10 @@ gulp.task('w-convert', function () {
 
 gulp.task('copy-files', function () {
   return gulp.src(paths.noJs)
-    .pipe(changedInPlace())
+    .pipe(changed('www'))
     .pipe(gulp.dest('www'))
 });
 
-/*                                                       */
-/* ==================== ESFORMATTER ==================== */
-/*                                                       */
-
-gulp.task('w-esformatter', function () {
-  gulp.watch(paths.jsfiles, ['esformatter']);
-});
-
-gulp.task('esformatter', function () {
-  return gulp.src(paths.jsfiles)
-    .pipe(changedInPlace())
-    .pipe(plumber())
-    .pipe(esformatter())
-    .pipe(gulp.dest('app'));
-});
 
 /*                                                 */
 /* ==================== Babel ==================== */

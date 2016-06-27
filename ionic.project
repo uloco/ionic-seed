@@ -2,10 +2,11 @@
   "name": "ionic-seed",
   "app_id": "",
   "gulpStartupTasks": [
+    "w-convert",
     "sass",
     "watch"
   ],
-  "defaultBrowser": "google-chrome",
+  "defaultBrowser": "chromium-browser",
   "watchPatterns": [
     "www/**/*",
     "!www/bower_components/**/*"
